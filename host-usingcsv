@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+############ Developed by Shanu Choudhary ##########
+#### Steps to use ################
+## Step1 :- csv file name should be "nagios-linux" or you can change name 
+## Step2 :- It will create individual host file 
+## Step3 :- Ensure that in IP address and hostname in respective to coulnm 1-2
+## Step4 :- Need to create hosttemplate named as template.cfg 
+
+mkdir temp-cfg
+
+cat  nagios-linux.csv | while read LINE
+do
+    HostIP=`echo $LINE | cut -d, -f1`
+    HostName=`echo $LINE | cut -d, -f2`
+    sed -e "s/XXXX/$HostName/g; s/ZZZZ/$HostIP/g" template.cfg > temp-cfg/$HostName.cfg
+done
+
+
+
+
+
+
+
+
+
